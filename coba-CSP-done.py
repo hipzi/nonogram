@@ -163,7 +163,7 @@ HEIGHT = 25
 MARGIN = 3
 
 # Level 1
-level1_Img = pygame.image.load("d:/Nonogram-Design/Level-1.jpg").convert()
+level1_Img = pygame.image.load("Level/Level-1.jpg").convert()
 level1 = [ [0, 0, 1, 1, 0, 0, 1, 1, 0, 0],
            [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],

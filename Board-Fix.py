@@ -13,18 +13,18 @@ LETTUCE = (147, 206, 103)
 # Set the HEIGHT and WIDTH of the screen
 WINDOW_SIZE = [400, 600]
 screen = pygame.display.set_mode(WINDOW_SIZE)
- 
+
 # Set title of screen
 pygame.display.set_caption("NONOGRAM")
 
 # Loop until the user clicks the close button.
 done = False
- 
+
 # Used to manage how fast the screen updates
 clock = pygame.time.Clock()
 
 # Image
-level1 = pygame.image.load("d:/nonogram/Level/Level-1.jpg").convert()
+level1 = pygame.image.load("Level/Level-1.jpg").convert()
 
 # Display Image
 def displayImage(x, y):
@@ -33,7 +33,7 @@ def displayImage(x, y):
 # This sets the WIDTH and HEIGHT of each grid location
 WIDTH = 25
 HEIGHT = 25
- 
+
 # This sets the margin between each cell
 MARGIN = 3
 
