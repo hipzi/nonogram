@@ -155,6 +155,13 @@ def checkThree (grid, clue):
     
     return status
 
+def checkLen (grid, clue):
+    if len(clue) == 1: hasil = checkOne(grid, clue)
+    elif len(clue) == 2: hasil = checkTwo(grid, clue)
+    elif len(clue) == 3: hasil = checkThree(grid, clue)
+
+    return hasil
+
 # This sets the WIDTH and HEIGHT of each grid location
 WIDTH = 25
 HEIGHT = 25
@@ -163,7 +170,7 @@ HEIGHT = 25
 MARGIN = 3
 
 # Level 1
-level1_Img = pygame.image.load("Level/Level-1.jpg").convert()
+level1_Img = pygame.image.load("d:/Nonogram-Design/Level-1.jpg").convert()
 level1 = [ [0, 0, 1, 1, 0, 0, 1, 1, 0, 0],
            [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -215,31 +222,33 @@ while not done:
                 # Set that location to one
                 if grid[row][column] == 0: grid[row][column] = 1
                 elif grid[row][column] == 1 or grid[row][column] == 2: grid[row][column] = 0
-                # elif grid[row][column] == 2:
-                    # pass
                 print("Click ", pos, "Grid coordinates: ", row, column)
 
                 # gridCopy = grid[row].copy()
                 # print(gridCopy)
                 # print(level1_Baris[row], len(level1_Baris[row]))
 
-                if len(level1_Baris[row]) == 1:
-                    hasilBaris = checkOne(grid[row], level1_Baris[row])
-                elif len(level1_Baris[row]) == 2:
-                    hasilBaris = checkTwo(grid[row], level1_Baris[row])
-                elif len(level1_Baris[row]) == 3:
-                    hasilBaris = checkThree(grid[row], level1_Baris[row])
+                hasilBaris = checkLen(grid[row], level1_Baris[row])
+
+                # if len(level1_Baris[row]) == 1:
+                #     hasilBaris = checkOne(grid[row], level1_Baris[row])
+                # elif len(level1_Baris[row]) == 2:
+                #     hasilBaris = checkTwo(grid[row], level1_Baris[row])
+                # elif len(level1_Baris[row]) == 3:
+                #     hasilBaris = checkThree(grid[row], level1_Baris[row])
                 
                 for i in range(10):
                     gridCopy[i] = grid[i][column]
                 print(gridCopy)
 
-                if len(level1_Kolom[column]) == 1:
-                    hasilKolom = checkOne(gridCopy, level1_Kolom[column])
-                elif len(level1_Kolom[column]) == 2:
-                    hasilKolom = checkTwo(gridCopy, level1_Kolom[column])
-                elif len(level1_Kolom[column]) == 3:
-                    hasilKolom = checkThree(gridCopy, level1_Kolom[column])
+                hasilKolom = checkLen(gridCopy, level1_Kolom[column])
+
+                # if len(level1_Kolom[column]) == 1:
+                #     hasilKolom = checkOne(gridCopy, level1_Kolom[column])
+                # elif len(level1_Kolom[column]) == 2:
+                #     hasilKolom = checkTwo(gridCopy, level1_Kolom[column])
+                # elif len(level1_Kolom[column]) == 3:
+                #     hasilKolom = checkThree(gridCopy, level1_Kolom[column])
                     
                 print('HASIL -->', hasilBaris, hasilKolom)
                 if hasilBaris == 0 or hasilKolom == 0:
@@ -247,8 +256,15 @@ while not done:
                     else: grid[row][column] = 2
                 elif hasilBaris == 1 and hasilKolom == 1:
                     for i in range(10):
-                        if grid[row][i] == 2: grid[row][i] = 1
-                        if grid[i][column] == 2: grid[i][column] = 1
+                        if grid[row][i] == 2:
+                            for j in range(10):
+                                gridCopy[j] = grid[j][i]
+                            print(gridCopy)
+                            hasilKolom1 = checkLen(gridCopy, level1_Kolom[i])
+                            if hasilKolom1 == 1: grid[row][i] = 1
+                        if grid[i][column] == 2:
+                            hasilBaris1 = checkLen(grid[i], level1_Baris[i])
+                            if hasilBaris1 == 1: grid[i][column] = 1
 
 
     # Set the screen background
