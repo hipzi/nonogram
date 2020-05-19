@@ -105,6 +105,13 @@ def checkTwo (grid, clue):
     
     return status
 
+def checkLen (grid, clue):
+    if len(clue) == 1: hasil = checkOne(grid, clue)
+    elif len(clue) == 2: hasil = checkTwo(grid, clue)
+    elif len(clue) == 3: hasil = checkThree(grid, clue)
+
+    return hasil
+    
 # This sets the WIDTH and HEIGHT of each grid location
 WIDTH = 25
 HEIGHT = 25
