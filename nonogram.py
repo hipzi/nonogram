@@ -58,7 +58,8 @@ def main_menu():
                 level_menu()
         if button_2.collidepoint((mx, my)):
             if click:
-                pygame.quit()
+                # pygame.quit()
+                cara_main()
                 # options()
 
         click = False
@@ -70,6 +71,111 @@ def main_menu():
                 if event.key == K_ESCAPE:
                     pygame.quit()
                     sys.exit()
+            if event.type == MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    click = True
+
+        pygame.display.update()
+        clock.tick(60)
+
+def cara_main():
+    click = False
+    running = True
+    while running:
+        # click = False
+        screen.fill((0,0,0))
+
+        mx, my = pygame.mouse.get_pos()
+
+        # Image
+        menu = pygame.image.load("Menu/caramain-1.png")
+        menu_next = pygame.image.load("Menu/NEXT.png")
+        screen.blit(menu, (0, 0))
+
+        m_next = screen.blit(menu_next, (186, 554, 20, 20))
+        
+        if m_next.collidepoint((mx, my)):
+            if click:
+                cara_main_2()
+
+        # click = False
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    running = False
+            if event.type == MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    click = True
+
+        pygame.display.update()
+        clock.tick(60)
+
+def cara_main_2():
+    click = False
+    running = True
+    while running:
+        # click = False
+        screen.fill((0,0,0))
+
+        mx, my = pygame.mouse.get_pos()
+
+        # Image
+        menu = pygame.image.load("Menu/caramain-2.png")
+        menu_next = pygame.image.load("Menu/NEXT.png")
+        screen.blit(menu, (0, 0))
+
+        m_next = screen.blit(menu_next, (186, 554, 20, 20))
+        
+        if m_next.collidepoint((mx, my)):
+            if click:
+                cara_main_3()
+
+        # click = False
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    running = False
+            if event.type == MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    click = True
+
+        pygame.display.update()
+        clock.tick(60)
+
+def cara_main_3():
+    click = False
+    running = True
+    while running:
+        # click = False
+        screen.fill((0,0,0))
+
+        mx, my = pygame.mouse.get_pos()
+
+        # Image
+        menu = pygame.image.load("Menu/caramain-3.png")
+        menu_back = pygame.image.load("Menu/back-2.png")
+        screen.blit(menu, (0, 0))
+
+        back = screen.blit(menu_back, (174, 310, 20, 20))
+        
+        if back.collidepoint((mx, my)):
+            if click:
+                main_menu()
+
+        # click = False
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    running = False
             if event.type == MOUSEBUTTONDOWN:
                 if event.button == 1:
                     click = True
@@ -121,6 +227,7 @@ def level_menu():
 
         pygame.display.update()
         clock.tick(60)
+
 def displayDone():
     click = False
     running = True
