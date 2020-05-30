@@ -48,19 +48,17 @@ def main_menu():
 
         # Image
         image_1 = pygame.image.load("Menu/Start.png")
-        image_2 = pygame.image.load("Menu/Quit.png")
+        image_2 = pygame.image.load("Menu/caramain.png")
 
         button_1 = screen.blit(image_1, (25, 377, 20, 20))
-        button_2 = screen.blit(image_2, (25, 447, 20, 20))
+        button_2 = screen.blit(image_2, (26.5, 447, 20, 20))
 
         if button_1.collidepoint((mx, my)):
             if click:
                 level_menu()
         if button_2.collidepoint((mx, my)):
             if click:
-                # pygame.quit()
                 cara_main()
-                # options()
 
         click = False
         for event in pygame.event.get():
@@ -197,11 +195,19 @@ def level_menu():
         menu_back = pygame.image.load("Menu/Back.png")
         menu_1 = pygame.image.load("Menu/Level_1.png")
         menu_2 = pygame.image.load("Menu/Level_2.png")
+        menu_3 = pygame.image.load("Menu/Level_3.png")
+        menu_4 = pygame.image.load("Menu/Level_4.png")
+        menu_5 = pygame.image.load("Menu/Level_5.png")
+        menu_6 = pygame.image.load("Menu/Level_6.png")
         screen.blit(menu, (0, 0))
 
         back = screen.blit(menu_back, (36, 50, 20, 20))
-        level_1 = screen.blit(menu_1, (36, 172, 10, 10))
-        level_2 = screen.blit(menu_2, (150, 172, 10, 10))
+        level_1 = screen.blit(menu_1, (35, 220, 10, 10))
+        level_2 = screen.blit(menu_2, (150, 220, 10, 10))
+        level_3 = screen.blit(menu_3, (264, 220, 10, 10))
+        level_4 = screen.blit(menu_4, (35, 339.5, 10, 10))
+        level_5 = screen.blit(menu_5, (150, 339.5, 10, 10))
+        level_6 = screen.blit(menu_6, (264, 339.5, 10, 10))
         
         if back.collidepoint((mx, my)):
             if click:
@@ -212,6 +218,18 @@ def level_menu():
         if level_2.collidepoint((mx, my)):
             if click:
                 level2()
+        if level_3.collidepoint((mx, my)):
+            if click:
+                level3()
+        if level_4.collidepoint((mx, my)):
+            if click:
+                level4()
+        if level_5.collidepoint((mx, my)):
+            if click:
+                level5()
+        if level_6.collidepoint((mx, my)):
+            if click:
+                level6()
 
         # click = False
         for event in pygame.event.get():
@@ -344,56 +362,6 @@ def level1():
         
         return status
 
-    # Cek jika clue ada 3
-    def checkThree (grid, clue):
-        
-        awal = arrayKosong.copy()
-        print(clue, '\n')
-        
-        startA = 0
-        while(startA + sum(clue) + 1 < 10):
-            temp1 = awal.copy()
-            
-            i = startA
-            while (i < startA + clue[0]):
-                temp1[i] = 1
-                i = i + 1
-            
-            x = 1
-            while (x + startA + sum(clue) + 1 <= 10):
-                startB = x + startA + clue[0]
-                temp2 = temp1.copy()
-                
-                j = startB
-                while (j < startB + clue[1]):
-                    temp2[j] = 1
-                    j = j + 1
-                
-                y = 1
-                while (y + startB + clue[1] + clue[2] <= 10):
-                    startC = y + startB + clue[1]
-                    
-                    temp3 = temp2.copy()
-                    
-                    k = startC
-                    while (k < startC + clue[2]):
-                        temp3[k] = 1
-                        k = k + 1
-                    
-                    y = y + 1
-                    status = gridChecker(grid, temp3)
-                    print(status)
-                    if status == 1: break
-                    
-                x = x + 1
-                if status == 1: break
-            
-            if status == 1: break
-            startA = startA + 1
-            print('-----', startA)
-        
-        return status
-
     def checkLen (grid, clue):
         if len(clue) == 1: hasil = checkOne(grid, clue)
         elif len(clue) == 2: hasil = checkTwo(grid, clue)
@@ -408,30 +376,30 @@ def level1():
     # This sets the margin between each cell
     MARGIN = 3
 
-    # Level 1
-    level1_Img = pygame.image.load("Level/Level-1.jpg").convert()
-    level1 = [ [0, 0, 1, 1, 0, 0, 1, 1, 0, 0],
+    # Level 2
+    level1_Img = pygame.image.load("Level/Level-2.png").convert()
+    level1 = [ [0, 0, 0, 0, 1, 1, 0, 1, 0, 0],
+            [0, 0, 0, 1, 1, 1, 1, 1, 0, 0],
             [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
+            [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 0, 0, 0, 1, 1, 0, 0, 0, 1],
-            [1, 0, 0, 0, 1, 1, 0, 0, 0, 1],
-            [1, 0, 0, 0, 1, 1, 0, 0, 0, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 0, 0, 0, 1, 1, 0, 0, 0, 1],
-            [1, 0, 0, 0, 1, 1, 0, 0, 0, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1] ]
+            [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
+            [0, 0, 1, 1, 0, 0, 1, 1, 0, 0],
+            [0, 0, 1, 1, 0, 0, 1, 1, 0, 0],
+            [0, 0, 1, 1, 0, 0, 1, 1, 0, 0],
+            [0, 0, 1, 1, 1, 1, 1, 1, 0, 0] ]
 
-    level1_Baris = [ [2, 2], [6],
-                    [10], [1, 2, 1],
-                    [1, 2, 1], [1, 2, 1],
-                    [10], [1, 2, 1],
-                    [1, 2, 1], [10] ]
+    level1_Baris = [ [2, 1], [5],
+                    [6], [8],
+                    [10], [6],
+                    [2, 2], [2, 2],
+                    [2, 2], [6] ]
 
-    level1_Kolom = [ [8], [1, 1, 1],
-                    [3, 1, 1], [3, 1, 1],
-                    [9], [9],
-                    [3, 1, 1], [3, 1, 1],
-                    [1, 1, 1], [8] ]
+    level1_Kolom = [ [1], [2],
+                    [8], [9],
+                    [6, 1], [6, 1],
+                    [9], [10],
+                    [2], [1] ]
 
     # Create a 2 dimensional array. A two dimensional
     # array is simply a list of lists.
@@ -594,6 +562,56 @@ def level2():
         
         return status
 
+    # Cek jika clue ada 3
+    def checkThree (grid, clue):
+        
+        awal = arrayKosong.copy()
+        print(clue, '\n')
+        
+        startA = 0
+        while(startA + sum(clue) + 1 < 10):
+            temp1 = awal.copy()
+            
+            i = startA
+            while (i < startA + clue[0]):
+                temp1[i] = 1
+                i = i + 1
+            
+            x = 1
+            while (x + startA + sum(clue) + 1 <= 10):
+                startB = x + startA + clue[0]
+                temp2 = temp1.copy()
+                
+                j = startB
+                while (j < startB + clue[1]):
+                    temp2[j] = 1
+                    j = j + 1
+                
+                y = 1
+                while (y + startB + clue[1] + clue[2] <= 10):
+                    startC = y + startB + clue[1]
+                    
+                    temp3 = temp2.copy()
+                    
+                    k = startC
+                    while (k < startC + clue[2]):
+                        temp3[k] = 1
+                        k = k + 1
+                    
+                    y = y + 1
+                    status = gridChecker(grid, temp3)
+                    print(status)
+                    if status == 1: break
+                    
+                x = x + 1
+                if status == 1: break
+            
+            if status == 1: break
+            startA = startA + 1
+            print('-----', startA)
+        
+        return status
+
     def checkLen (grid, clue):
         if len(clue) == 1: hasil = checkOne(grid, clue)
         elif len(clue) == 2: hasil = checkTwo(grid, clue)
@@ -608,30 +626,30 @@ def level2():
     # This sets the margin between each cell
     MARGIN = 3
 
-    # Level 2
-    level2_Img = pygame.image.load("Level/Level-2.png").convert()
-    level2 = [ [0, 0, 0, 0, 1, 1, 0, 1, 0, 0],
-            [0, 0, 0, 1, 1, 1, 1, 1, 0, 0],
+    # Level 1
+    level2_Img = pygame.image.load("Level/Level-1.jpg").convert()
+    level2 = [ [0, 0, 1, 1, 0, 0, 1, 1, 0, 0],
             [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
-            [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
-            [0, 0, 1, 1, 0, 0, 1, 1, 0, 0],
-            [0, 0, 1, 1, 0, 0, 1, 1, 0, 0],
-            [0, 0, 1, 1, 0, 0, 1, 1, 0, 0],
-            [0, 0, 1, 1, 1, 1, 1, 1, 0, 0] ]
+            [1, 0, 0, 0, 1, 1, 0, 0, 0, 1],
+            [1, 0, 0, 0, 1, 1, 0, 0, 0, 1],
+            [1, 0, 0, 0, 1, 1, 0, 0, 0, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 0, 0, 0, 1, 1, 0, 0, 0, 1],
+            [1, 0, 0, 0, 1, 1, 0, 0, 0, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1] ]
 
-    level2_Baris = [ [2, 1], [5],
-                    [6], [8],
-                    [10], [6],
-                    [2, 2], [2, 2],
-                    [2, 2], [6] ]
+    level2_Baris = [ [2, 2], [6],
+                    [10], [1, 2, 1],
+                    [1, 2, 1], [1, 2, 1],
+                    [10], [1, 2, 1],
+                    [1, 2, 1], [10] ]
 
-    level2_Kolom = [ [1], [2],
-                    [8], [9],
-                    [6, 1], [6, 1],
-                    [9], [10],
-                    [2], [1] ]
+    level2_Kolom = [ [8], [1, 1, 1],
+                    [3, 1, 1], [3, 1, 1],
+                    [9], [9],
+                    [3, 1, 1], [3, 1, 1],
+                    [1, 1, 1], [8] ]
 
     # Create a 2 dimensional array. A two dimensional
     # array is simply a list of lists.
@@ -705,6 +723,987 @@ def level2():
 
         # Jika sudah(?)
         if level2 == grid:
+            displayDone()
+        
+        # Limit to 60 frames per second
+        clock.tick(60)
+    
+        # Go ahead and update the screen with what we've drawn.
+        pygame.display.flip()
+    
+    # Be IDLE friendly. If you forget this line, the program will 'hang'
+    # on exit.
+    pygame.quit()
+
+def level3():
+    # Loop until the user clicks the close button.
+    done = False
+
+    # Used to manage how fast the screen updates
+    clock = pygame.time.Clock()
+
+    # Array Kosongan
+    arrayKosong = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+    # Cek kemungkinan contraint terpenuhi atau tidak
+    def gridChecker(grids, array):
+        print('Grids:', grids)
+        print('Array:', array)
+        
+        if grids != array:
+            for i in range(10):
+                if (grids[i] == 1 or grids[i] == 2) and array[i] == 0:
+                    return 0
+        
+        return 1
+
+    def checkOne (grid, clue):
+        awal = arrayKosong.copy()
+        
+        startA = 0
+        while (startA + clue[0] <= 10):
+            temp1 = awal.copy()
+            
+            i = startA
+            while (i < startA + clue[0]):
+                temp1[i] = 1
+                i = i + 1
+            
+            status = gridChecker(grid, temp1)
+            print(status)
+            if status == 1: break
+
+            startA = startA + 1
+            print('-----', startA)
+        
+        return status
+
+    # Cek jika clue ada 2
+    def checkTwo (grid, clue):
+        awal = arrayKosong.copy()
+
+        startA = 0
+        while(startA + sum(clue) < 10):
+            temp1 = awal.copy()
+            
+            i = startA
+            while (i < startA + clue[0]):
+                temp1[i] = 1
+                i = i + 1
+            
+            x = 1
+            while (x + startA + sum(clue) <= 10):
+                startB = x + startA + clue[0]
+                temp2 = temp1.copy()
+
+                j = startB
+                while (j < startB + clue[1]):
+                    temp2[j] = 1
+                    j = j + 1
+                
+                x = x + 1
+                status = gridChecker(grid, temp2)
+                print(status)
+                if status == 1: break
+        
+            if status == 1: break
+            startA = startA + 1
+            print('-----', startA)
+        
+        return status
+
+    # Cek jika clue ada 3
+    def checkThree (grid, clue):
+        
+        awal = arrayKosong.copy()
+        print(clue, '\n')
+        
+        startA = 0
+        while(startA + sum(clue) + 1 < 10):
+            temp1 = awal.copy()
+            
+            i = startA
+            while (i < startA + clue[0]):
+                temp1[i] = 1
+                i = i + 1
+            
+            x = 1
+            while (x + startA + sum(clue) + 1 <= 10):
+                startB = x + startA + clue[0]
+                temp2 = temp1.copy()
+                
+                j = startB
+                while (j < startB + clue[1]):
+                    temp2[j] = 1
+                    j = j + 1
+                
+                y = 1
+                while (y + startB + clue[1] + clue[2] <= 10):
+                    startC = y + startB + clue[1]
+                    
+                    temp3 = temp2.copy()
+                    
+                    k = startC
+                    while (k < startC + clue[2]):
+                        temp3[k] = 1
+                        k = k + 1
+                    
+                    y = y + 1
+                    status = gridChecker(grid, temp3)
+                    print(status)
+                    if status == 1: break
+                    
+                x = x + 1
+                if status == 1: break
+            
+            if status == 1: break
+            startA = startA + 1
+            print('-----', startA)
+        
+        return status
+
+    def checkLen (grid, clue):
+        if len(clue) == 1: hasil = checkOne(grid, clue)
+        elif len(clue) == 2: hasil = checkTwo(grid, clue)
+        elif len(clue) == 3: hasil = checkThree(grid, clue)
+
+        return hasil
+
+    # This sets the WIDTH and HEIGHT of each grid location
+    WIDTH = 25
+    HEIGHT = 25
+    
+    # This sets the margin between each cell
+    MARGIN = 3
+
+    # Level 1
+    level3_Img = pygame.image.load("Level/Level-3.jpg").convert()
+    level3 = [ [0, 1, 1, 0, 0, 0, 0, 0, 0, 0],
+                [0, 1, 1, 0, 0, 0, 0, 0, 0, 0],
+                [0, 1, 1, 1, 1, 0, 0, 0, 0, 0],
+                [0, 1, 1, 1, 1, 0, 0, 0, 0, 0],
+                [0, 1, 1, 1, 1, 0, 0, 0, 0, 0],
+                [0, 1, 1, 1, 1, 0, 1, 1, 1, 0],
+                [0, 1, 1, 1, 1, 0, 1, 1, 1, 0],
+                [0, 1, 1, 1, 1, 0, 1, 1, 1, 0],
+                [0, 1, 1, 1, 1, 0, 1, 1, 1, 0],
+                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1] ]
+
+    level3_Baris = [ [2], [2], [4], [4], [4],
+                    [4, 3], [4, 3], [4, 3], [4, 3], [10] ]
+
+    level3_Kolom = [ [1], [8], [10], [10], [8], [1], [5], [5], [5], [1] ]
+
+    # Create a 2 dimensional array. A two dimensional
+    # array is simply a list of lists.
+    grid = []
+    for row in range(10):
+        # Add an empty array that will hold each cell in this row
+        grid.append([])
+        for column in range(10):
+            grid[row].append(0)  # Append a cell
+
+    gridCopy = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+    # -------- Main Program Loop -----------
+    while not done:
+        for event in pygame.event.get():    # User did something
+            if event.type == pygame.QUIT:   # If user clicked close
+                done = True
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                # User clicks the mouse. Get the position
+                pos = pygame.mouse.get_pos()
+                if 90 < pos[0] and pos[0] < 373 and 210 < pos[1] and pos[1] < 493:
+
+                    # Change the x/y screen coordinates to grid coordinates
+                    column = (pos[0] - 90) // (WIDTH + MARGIN)
+                    row = (pos[1] - 210) // (HEIGHT + MARGIN)
+                    
+                    # Set that location to one
+                    if grid[row][column] == 0: grid[row][column] = 1
+                    elif grid[row][column] == 1 or grid[row][column] == 2: grid[row][column] = 0
+                    print("Click ", pos, "Grid coordinates: ", row, column)
+
+                    hasilBaris = checkLen(grid[row], level3_Baris[row])
+                    
+                    for i in range(10):
+                        gridCopy[i] = grid[i][column]
+                    print(gridCopy)
+
+                    hasilKolom = checkLen(gridCopy, level3_Kolom[column])
+                        
+                    print('HASIL -->', hasilBaris, hasilKolom)
+                    if hasilBaris == 0 or hasilKolom == 0:
+                        if grid[row][column] == 0: grid[row][column] = 0
+                        else: grid[row][column] = 2
+                    elif hasilBaris == 1 and hasilKolom == 1:
+                        for i in range(10):
+                            if grid[row][i] == 2:
+                                for j in range(10):
+                                    gridCopy[j] = grid[j][i]
+                                print(gridCopy)
+                                hasilKolom1 = checkLen(gridCopy, level3_Kolom[i])
+                                if hasilKolom1 == 1: grid[row][i] = 1
+                            if grid[i][column] == 2:
+                                hasilBaris1 = checkLen(grid[i], level3_Baris[i])
+                                if hasilBaris1 == 1: grid[i][column] = 1
+
+
+        # Set the screen background
+        screen.fill(WHITE)
+        screen.blit(level3_Img, (0, 0))
+
+        pygame.draw.rect(screen, BLACK, [90, 210, 283, 283])
+
+        # Draw the grid
+        for row in range(10):
+            for column in range(10):
+                color = WHITE
+                if grid[row][column] == 1: color = LETTUCE
+                elif grid[row][column] == 2: color = RED
+                pygame.draw.rect(screen, color, [90 + (MARGIN + WIDTH) * column + MARGIN,
+                                210 + (MARGIN + HEIGHT) * row + MARGIN, WIDTH, HEIGHT] )
+
+        # Jika sudah(?)
+        if level3 == grid:
+            displayDone()
+        
+        # Limit to 60 frames per second
+        clock.tick(60)
+    
+        # Go ahead and update the screen with what we've drawn.
+        pygame.display.flip()
+    
+    # Be IDLE friendly. If you forget this line, the program will 'hang'
+    # on exit.
+    pygame.quit()
+
+def level4():
+    # Loop until the user clicks the close button.
+    done = False
+
+    # Used to manage how fast the screen updates
+    clock = pygame.time.Clock()
+
+    # Array Kosongan
+    arrayKosong = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+    # Cek kemungkinan contraint terpenuhi atau tidak
+    def gridChecker(grids, array):
+        print('Grids:', grids)
+        print('Array:', array)
+        
+        if grids != array:
+            for i in range(10):
+                if (grids[i] == 1 or grids[i] == 2) and array[i] == 0:
+                    return 0
+        
+        return 1
+
+    def checkOne (grid, clue):
+        awal = arrayKosong.copy()
+        
+        startA = 0
+        while (startA + clue[0] <= 10):
+            temp1 = awal.copy()
+            
+            i = startA
+            while (i < startA + clue[0]):
+                temp1[i] = 1
+                i = i + 1
+            
+            status = gridChecker(grid, temp1)
+            print(status)
+            if status == 1: break
+
+            startA = startA + 1
+            print('-----', startA)
+        
+        return status
+
+    # Cek jika clue ada 2
+    def checkTwo (grid, clue):
+        awal = arrayKosong.copy()
+
+        startA = 0
+        while(startA + sum(clue) < 10):
+            temp1 = awal.copy()
+            
+            i = startA
+            while (i < startA + clue[0]):
+                temp1[i] = 1
+                i = i + 1
+            
+            x = 1
+            while (x + startA + sum(clue) <= 10):
+                startB = x + startA + clue[0]
+                temp2 = temp1.copy()
+
+                j = startB
+                while (j < startB + clue[1]):
+                    temp2[j] = 1
+                    j = j + 1
+                
+                x = x + 1
+                status = gridChecker(grid, temp2)
+                print(status)
+                if status == 1: break
+        
+            if status == 1: break
+            startA = startA + 1
+            print('-----', startA)
+        
+        return status
+
+    # Cek jika clue ada 3
+    def checkThree (grid, clue):
+        
+        awal = arrayKosong.copy()
+        print(clue, '\n')
+        
+        startA = 0
+        while(startA + sum(clue) + 1 < 10):
+            temp1 = awal.copy()
+            
+            i = startA
+            while (i < startA + clue[0]):
+                temp1[i] = 1
+                i = i + 1
+            
+            x = 1
+            while (x + startA + sum(clue) + 1 <= 10):
+                startB = x + startA + clue[0]
+                temp2 = temp1.copy()
+                
+                j = startB
+                while (j < startB + clue[1]):
+                    temp2[j] = 1
+                    j = j + 1
+                
+                y = 1
+                while (y + startB + clue[1] + clue[2] <= 10):
+                    startC = y + startB + clue[1]
+                    
+                    temp3 = temp2.copy()
+                    
+                    k = startC
+                    while (k < startC + clue[2]):
+                        temp3[k] = 1
+                        k = k + 1
+                    
+                    y = y + 1
+                    status = gridChecker(grid, temp3)
+                    print(status)
+                    if status == 1: break
+                    
+                x = x + 1
+                if status == 1: break
+            
+            if status == 1: break
+            startA = startA + 1
+            print('-----', startA)
+        
+        return status
+
+    def checkLen (grid, clue):
+        if len(clue) == 1: hasil = checkOne(grid, clue)
+        elif len(clue) == 2: hasil = checkTwo(grid, clue)
+        elif len(clue) == 3: hasil = checkThree(grid, clue)
+
+        return hasil
+
+    # This sets the WIDTH and HEIGHT of each grid location
+    WIDTH = 25
+    HEIGHT = 25
+    
+    # This sets the margin between each cell
+    MARGIN = 3
+
+    # Level 1
+    level4_Img = pygame.image.load("Level/Level-4.jpg").convert()
+    level4 = [ [1, 1, 1, 0, 0, 0, 0, 0, 0, 1],
+                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                [1, 1, 1, 1, 0, 0, 1, 1, 1, 1],
+                [0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                [0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+                [0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+                [0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+                [0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1] ]
+
+    level4_Baris = [ [1, 1], [10], [4, 4], [1, 1], [10],
+                    [1, 1], [1, 1], [1, 1], [1, 1], [10] ]
+
+    level4_Kolom = [ [3, 1, 1], [2, 1, 1],
+                    [9], [2, 1, 1],
+                    [1, 1, 1], [1, 1, 1],
+                    [2, 1, 1], [9],
+                    [2, 1, 1], [3, 1, 1] ]
+
+
+    # Create a 2 dimensional array. A two dimensional
+    # array is simply a list of lists.
+    grid = []
+    for row in range(10):
+        # Add an empty array that will hold each cell in this row
+        grid.append([])
+        for column in range(10):
+            grid[row].append(0)  # Append a cell
+
+    gridCopy = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+    # -------- Main Program Loop -----------
+    while not done:
+        for event in pygame.event.get():    # User did something
+            if event.type == pygame.QUIT:   # If user clicked close
+                done = True
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                # User clicks the mouse. Get the position
+                pos = pygame.mouse.get_pos()
+                if 90 < pos[0] and pos[0] < 373 and 210 < pos[1] and pos[1] < 493:
+
+                    # Change the x/y screen coordinates to grid coordinates
+                    column = (pos[0] - 90) // (WIDTH + MARGIN)
+                    row = (pos[1] - 210) // (HEIGHT + MARGIN)
+                    
+                    # Set that location to one
+                    if grid[row][column] == 0: grid[row][column] = 1
+                    elif grid[row][column] == 1 or grid[row][column] == 2: grid[row][column] = 0
+                    print("Click ", pos, "Grid coordinates: ", row, column)
+
+                    hasilBaris = checkLen(grid[row], level4_Baris[row])
+                    
+                    for i in range(10):
+                        gridCopy[i] = grid[i][column]
+                    print(gridCopy)
+
+                    hasilKolom = checkLen(gridCopy, level4_Kolom[column])
+                        
+                    print('HASIL -->', hasilBaris, hasilKolom)
+                    if hasilBaris == 0 or hasilKolom == 0:
+                        if grid[row][column] == 0: grid[row][column] = 0
+                        else: grid[row][column] = 2
+                    elif hasilBaris == 1 and hasilKolom == 1:
+                        for i in range(10):
+                            if grid[row][i] == 2:
+                                for j in range(10):
+                                    gridCopy[j] = grid[j][i]
+                                print(gridCopy)
+                                hasilKolom1 = checkLen(gridCopy, level4_Kolom[i])
+                                if hasilKolom1 == 1: grid[row][i] = 1
+                            if grid[i][column] == 2:
+                                hasilBaris1 = checkLen(grid[i], level4_Baris[i])
+                                if hasilBaris1 == 1: grid[i][column] = 1
+
+
+        # Set the screen background
+        screen.fill(WHITE)
+        screen.blit(level4_Img, (0, 0))
+
+        pygame.draw.rect(screen, BLACK, [90, 210, 283, 283])
+
+        # Draw the grid
+        for row in range(10):
+            for column in range(10):
+                color = WHITE
+                if grid[row][column] == 1: color = LETTUCE
+                elif grid[row][column] == 2: color = RED
+                pygame.draw.rect(screen, color, [90 + (MARGIN + WIDTH) * column + MARGIN,
+                                210 + (MARGIN + HEIGHT) * row + MARGIN, WIDTH, HEIGHT] )
+
+        # Jika sudah(?)
+        if level4 == grid:
+            displayDone()
+        
+        # Limit to 60 frames per second
+        clock.tick(60)
+    
+        # Go ahead and update the screen with what we've drawn.
+        pygame.display.flip()
+    
+    # Be IDLE friendly. If you forget this line, the program will 'hang'
+    # on exit.
+    pygame.quit()
+
+def level5():
+    # Loop until the user clicks the close button.
+    done = False
+
+    # Used to manage how fast the screen updates
+    clock = pygame.time.Clock()
+
+    # Array Kosongan
+    arrayKosong = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+    # Cek kemungkinan contraint terpenuhi atau tidak
+    def gridChecker(grids, array):
+        print('Grids:', grids)
+        print('Array:', array)
+        
+        if grids != array:
+            for i in range(10):
+                if (grids[i] == 1 or grids[i] == 2) and array[i] == 0:
+                    return 0
+        
+        return 1
+
+    def checkOne (grid, clue):
+        awal = arrayKosong.copy()
+        
+        startA = 0
+        while (startA + clue[0] <= 10):
+            temp1 = awal.copy()
+            
+            i = startA
+            while (i < startA + clue[0]):
+                temp1[i] = 1
+                i = i + 1
+            
+            status = gridChecker(grid, temp1)
+            print(status)
+            if status == 1: break
+
+            startA = startA + 1
+            print('-----', startA)
+        
+        return status
+
+    # Cek jika clue ada 2
+    def checkTwo (grid, clue):
+        awal = arrayKosong.copy()
+
+        startA = 0
+        while(startA + sum(clue) < 10):
+            temp1 = awal.copy()
+            
+            i = startA
+            while (i < startA + clue[0]):
+                temp1[i] = 1
+                i = i + 1
+            
+            x = 1
+            while (x + startA + sum(clue) <= 10):
+                startB = x + startA + clue[0]
+                temp2 = temp1.copy()
+
+                j = startB
+                while (j < startB + clue[1]):
+                    temp2[j] = 1
+                    j = j + 1
+                
+                x = x + 1
+                status = gridChecker(grid, temp2)
+                print(status)
+                if status == 1: break
+        
+            if status == 1: break
+            startA = startA + 1
+            print('-----', startA)
+        
+        return status
+
+    # Cek jika clue ada 3
+    def checkThree (grid, clue):
+        
+        awal = arrayKosong.copy()
+        print(clue, '\n')
+        
+        startA = 0
+        while(startA + sum(clue) + 1 < 10):
+            temp1 = awal.copy()
+            
+            i = startA
+            while (i < startA + clue[0]):
+                temp1[i] = 1
+                i = i + 1
+            
+            x = 1
+            while (x + startA + sum(clue) + 1 <= 10):
+                startB = x + startA + clue[0]
+                temp2 = temp1.copy()
+                
+                j = startB
+                while (j < startB + clue[1]):
+                    temp2[j] = 1
+                    j = j + 1
+                
+                y = 1
+                while (y + startB + clue[1] + clue[2] <= 10):
+                    startC = y + startB + clue[1]
+                    
+                    temp3 = temp2.copy()
+                    
+                    k = startC
+                    while (k < startC + clue[2]):
+                        temp3[k] = 1
+                        k = k + 1
+                    
+                    y = y + 1
+                    status = gridChecker(grid, temp3)
+                    print(status)
+                    if status == 1: break
+                    
+                x = x + 1
+                if status == 1: break
+            
+            if status == 1: break
+            startA = startA + 1
+            print('-----', startA)
+        
+        return status
+
+    def checkLen (grid, clue):
+        if len(clue) == 1: hasil = checkOne(grid, clue)
+        elif len(clue) == 2: hasil = checkTwo(grid, clue)
+        elif len(clue) == 3: hasil = checkThree(grid, clue)
+
+        return hasil
+
+    # This sets the WIDTH and HEIGHT of each grid location
+    WIDTH = 25
+    HEIGHT = 25
+    
+    # This sets the margin between each cell
+    MARGIN = 3
+
+    # Level 1
+    level5_Img = pygame.image.load("Level/Level-5.jpg").convert()
+    level5 = [ [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
+                [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
+                [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
+                [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+                [1, 1, 1, 0, 1, 1, 0, 1, 1, 1],
+                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                [0, 1, 0, 1, 1, 1, 1, 0, 1, 0],
+                [0, 1, 1, 0, 1, 1, 0, 1, 1, 0],
+                [0, 1, 1, 1, 0, 0, 1, 1, 1, 0],
+                [0, 0, 1, 1, 1, 1, 1, 1, 0, 0] ]
+
+    level5_Baris = [ [2], [2], [6], [8], [3, 2, 3],
+                    [10], [1, 4, 1], [2, 2, 2], [3, 3], [6] ]
+
+    level5_Kolom = [ [2], [6], [4, 3], [2, 2, 2], [8, 1]
+                    [8, 1], [2, 2, 2], [4, 3], [6], [2] ]
+
+
+    # Create a 2 dimensional array. A two dimensional
+    # array is simply a list of lists.
+    grid = []
+    for row in range(10):
+        # Add an empty array that will hold each cell in this row
+        grid.append([])
+        for column in range(10):
+            grid[row].append(0)  # Append a cell
+
+    gridCopy = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+    # -------- Main Program Loop -----------
+    while not done:
+        for event in pygame.event.get():    # User did something
+            if event.type == pygame.QUIT:   # If user clicked close
+                done = True
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                # User clicks the mouse. Get the position
+                pos = pygame.mouse.get_pos()
+                if 90 < pos[0] and pos[0] < 373 and 210 < pos[1] and pos[1] < 493:
+
+                    # Change the x/y screen coordinates to grid coordinates
+                    column = (pos[0] - 90) // (WIDTH + MARGIN)
+                    row = (pos[1] - 210) // (HEIGHT + MARGIN)
+                    
+                    # Set that location to one
+                    if grid[row][column] == 0: grid[row][column] = 1
+                    elif grid[row][column] == 1 or grid[row][column] == 2: grid[row][column] = 0
+                    print("Click ", pos, "Grid coordinates: ", row, column)
+
+                    hasilBaris = checkLen(grid[row], level5_Baris[row])
+                    
+                    for i in range(10):
+                        gridCopy[i] = grid[i][column]
+                    print(gridCopy)
+
+                    hasilKolom = checkLen(gridCopy, level5_Kolom[column])
+                        
+                    print('HASIL -->', hasilBaris, hasilKolom)
+                    if hasilBaris == 0 or hasilKolom == 0:
+                        if grid[row][column] == 0: grid[row][column] = 0
+                        else: grid[row][column] = 2
+                    elif hasilBaris == 1 and hasilKolom == 1:
+                        for i in range(10):
+                            if grid[row][i] == 2:
+                                for j in range(10):
+                                    gridCopy[j] = grid[j][i]
+                                print(gridCopy)
+                                hasilKolom1 = checkLen(gridCopy, level5_Kolom[i])
+                                if hasilKolom1 == 1: grid[row][i] = 1
+                            if grid[i][column] == 2:
+                                hasilBaris1 = checkLen(grid[i], level5_Baris[i])
+                                if hasilBaris1 == 1: grid[i][column] = 1
+
+
+        # Set the screen background
+        screen.fill(WHITE)
+        screen.blit(level5_Img, (0, 0))
+
+        pygame.draw.rect(screen, BLACK, [90, 210, 283, 283])
+
+        # Draw the grid
+        for row in range(10):
+            for column in range(10):
+                color = WHITE
+                if grid[row][column] == 1: color = LETTUCE
+                elif grid[row][column] == 2: color = RED
+                pygame.draw.rect(screen, color, [90 + (MARGIN + WIDTH) * column + MARGIN,
+                                210 + (MARGIN + HEIGHT) * row + MARGIN, WIDTH, HEIGHT] )
+
+        # Jika sudah(?)
+        if level5 == grid:
+            displayDone()
+        
+        # Limit to 60 frames per second
+        clock.tick(60)
+    
+        # Go ahead and update the screen with what we've drawn.
+        pygame.display.flip()
+    
+    # Be IDLE friendly. If you forget this line, the program will 'hang'
+    # on exit.
+    pygame.quit()
+
+def level6():
+    # Loop until the user clicks the close button.
+    done = False
+
+    # Used to manage how fast the screen updates
+    clock = pygame.time.Clock()
+
+    # Array Kosongan
+    arrayKosong = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+    # Cek kemungkinan contraint terpenuhi atau tidak
+    def gridChecker(grids, array):
+        print('Grids:', grids)
+        print('Array:', array)
+        
+        if grids != array:
+            for i in range(10):
+                if (grids[i] == 1 or grids[i] == 2) and array[i] == 0:
+                    return 0
+        
+        return 1
+
+    def checkOne (grid, clue):
+        awal = arrayKosong.copy()
+        
+        startA = 0
+        while (startA + clue[0] <= 10):
+            temp1 = awal.copy()
+            
+            i = startA
+            while (i < startA + clue[0]):
+                temp1[i] = 1
+                i = i + 1
+            
+            status = gridChecker(grid, temp1)
+            print(status)
+            if status == 1: break
+
+            startA = startA + 1
+            print('-----', startA)
+        
+        return status
+
+    # Cek jika clue ada 2
+    def checkTwo (grid, clue):
+        awal = arrayKosong.copy()
+
+        startA = 0
+        while(startA + sum(clue) < 10):
+            temp1 = awal.copy()
+            
+            i = startA
+            while (i < startA + clue[0]):
+                temp1[i] = 1
+                i = i + 1
+            
+            x = 1
+            while (x + startA + sum(clue) <= 10):
+                startB = x + startA + clue[0]
+                temp2 = temp1.copy()
+
+                j = startB
+                while (j < startB + clue[1]):
+                    temp2[j] = 1
+                    j = j + 1
+                
+                x = x + 1
+                status = gridChecker(grid, temp2)
+                print(status)
+                if status == 1: break
+        
+            if status == 1: break
+            startA = startA + 1
+            print('-----', startA)
+        
+        return status
+
+    # Cek jika clue ada 3
+    def checkThree (grid, clue):
+        
+        awal = arrayKosong.copy()
+        print(clue, '\n')
+        
+        startA = 0
+        while(startA + sum(clue) + 1 < 10):
+            temp1 = awal.copy()
+            
+            i = startA
+            while (i < startA + clue[0]):
+                temp1[i] = 1
+                i = i + 1
+            
+            x = 1
+            while (x + startA + sum(clue) + 1 <= 10):
+                startB = x + startA + clue[0]
+                temp2 = temp1.copy()
+                
+                j = startB
+                while (j < startB + clue[1]):
+                    temp2[j] = 1
+                    j = j + 1
+                
+                y = 1
+                while (y + startB + clue[1] + clue[2] <= 10):
+                    startC = y + startB + clue[1]
+                    
+                    temp3 = temp2.copy()
+                    
+                    k = startC
+                    while (k < startC + clue[2]):
+                        temp3[k] = 1
+                        k = k + 1
+                    
+                    y = y + 1
+                    status = gridChecker(grid, temp3)
+                    print(status)
+                    if status == 1: break
+                    
+                x = x + 1
+                if status == 1: break
+            
+            if status == 1: break
+            startA = startA + 1
+            print('-----', startA)
+        
+        return status
+
+    def checkLen (grid, clue):
+        if len(clue) == 1: hasil = checkOne(grid, clue)
+        elif len(clue) == 2: hasil = checkTwo(grid, clue)
+        elif len(clue) == 3: hasil = checkThree(grid, clue)
+
+        return hasil
+
+    # This sets the WIDTH and HEIGHT of each grid location
+    WIDTH = 25
+    HEIGHT = 25
+    
+    # This sets the margin between each cell
+    MARGIN = 3
+
+    # Level 1
+    level6_Img = pygame.image.load("Level/Level-6.jpg").convert()
+    level6 = [ [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
+                [0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
+                [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+                [1, 0, 0, 0, 1, 1, 0, 0, 0, 1],
+                [1, 0, 0, 1, 1, 1, 1, 0, 0, 1],
+                [1, 0, 0, 1, 1, 1, 1, 0, 0, 1],
+                [1, 0, 0, 0, 1, 1, 0, 0, 0, 1],
+                [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+                [0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
+                [0, 0, 1, 1, 1, 1, 1, 1, 0, 0] ] 
+
+    level6_Baris = [ [6], [1, 1], [1, 1], [1, 2, 1], [1, 4, 1],
+                    [1, 4, 1], [1, 2, 1], [1, 1], [1, 1], [6] ]
+
+    level6_Kolom = [ [6], [1, 1], [1, 1], [1, 2, 1], [1, 4, 1],
+                    [1, 4, 1], [1, 2, 1], [1, 1], [1, 1], [6] ]
+
+
+    # Create a 2 dimensional array. A two dimensional
+    # array is simply a list of lists.
+    grid = []
+    for row in range(10):
+        # Add an empty array that will hold each cell in this row
+        grid.append([])
+        for column in range(10):
+            grid[row].append(0)  # Append a cell
+
+    gridCopy = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+    # -------- Main Program Loop -----------
+    while not done:
+        for event in pygame.event.get():    # User did something
+            if event.type == pygame.QUIT:   # If user clicked close
+                done = True
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                # User clicks the mouse. Get the position
+                pos = pygame.mouse.get_pos()
+                if 90 < pos[0] and pos[0] < 373 and 210 < pos[1] and pos[1] < 493:
+
+                    # Change the x/y screen coordinates to grid coordinates
+                    column = (pos[0] - 90) // (WIDTH + MARGIN)
+                    row = (pos[1] - 210) // (HEIGHT + MARGIN)
+                    
+                    # Set that location to one
+                    if grid[row][column] == 0: grid[row][column] = 1
+                    elif grid[row][column] == 1 or grid[row][column] == 2: grid[row][column] = 0
+                    print("Click ", pos, "Grid coordinates: ", row, column)
+
+                    hasilBaris = checkLen(grid[row], level6_Baris[row])
+                    
+                    for i in range(10):
+                        gridCopy[i] = grid[i][column]
+                    print(gridCopy)
+
+                    hasilKolom = checkLen(gridCopy, level6_Kolom[column])
+                        
+                    print('HASIL -->', hasilBaris, hasilKolom)
+                    if hasilBaris == 0 or hasilKolom == 0:
+                        if grid[row][column] == 0: grid[row][column] = 0
+                        else: grid[row][column] = 2
+                    elif hasilBaris == 1 and hasilKolom == 1:
+                        for i in range(10):
+                            if grid[row][i] == 2:
+                                for j in range(10):
+                                    gridCopy[j] = grid[j][i]
+                                print(gridCopy)
+                                hasilKolom1 = checkLen(gridCopy, level6_Kolom[i])
+                                if hasilKolom1 == 1: grid[row][i] = 1
+                            if grid[i][column] == 2:
+                                hasilBaris1 = checkLen(grid[i], level6_Baris[i])
+                                if hasilBaris1 == 1: grid[i][column] = 1
+
+
+        # Set the screen background
+        screen.fill(WHITE)
+        screen.blit(level6_Img, (0, 0))
+
+        pygame.draw.rect(screen, BLACK, [90, 210, 283, 283])
+
+        # Draw the grid
+        for row in range(10):
+            for column in range(10):
+                color = WHITE
+                if grid[row][column] == 1: color = LETTUCE
+                elif grid[row][column] == 2: color = RED
+                pygame.draw.rect(screen, color, [90 + (MARGIN + WIDTH) * column + MARGIN,
+                                210 + (MARGIN + HEIGHT) * row + MARGIN, WIDTH, HEIGHT] )
+
+        # Jika sudah(?)
+        if level6 == grid:
             displayDone()
         
         # Limit to 60 frames per second
